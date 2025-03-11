@@ -29,7 +29,26 @@ def counting_sort(arr: List[int]) -> List[int]:
 
     Returns:
         List[int]: The sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(n + k)
+        Average Case: O(n + k)
+        Worst Case: O(n + k)
+
+    Space Complexity: O(n + k)
+
+    Examples:
+        >>> counting_sort([64, 34, 25, 12, 22, 11, 90])
+        [11, 12, 22, 25, 34, 64, 90]
+        >>> counting_sort([5, 1, 4, 2, 8])
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+
     if not arr:
         return []
 

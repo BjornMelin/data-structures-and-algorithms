@@ -1,0 +1,5 @@
+{
+  "tasks": {
+    "build": "cd java && ./gradlew build && cd ../python && python -m pip install -r requirements.txt"
+  }
+}

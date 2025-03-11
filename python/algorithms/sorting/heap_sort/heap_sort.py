@@ -27,7 +27,26 @@ def heap_sort(arr: List[int]) -> List[int]:
 
     Returns:
         List[int]: The sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(n log n)
+        Average Case: O(n log n)
+        Worst Case: O(n log n)
+
+    Space Complexity: O(1)
+
+    Examples:
+        >>> heap_sort([64, 34, 25, 12, 22, 11, 90])
+        [11, 12, 22, 25, 34, 64, 90]
+        >>> heap_sort([5, 1, 4, 2, 8])
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+
     n = len(arr)
 
     # Build a maxheap
@@ -51,7 +70,28 @@ def heapify(arr: List[int], n: int, i: int):
         arr (List[int]): The list of integers to be heapified.
         n (int): The size of the heap.
         i (int): The index of the root node of the subtree.
+
+    Raises:
+        TypeError: If the input is not a list of integers or if n or i are not integers.
+
+    Time Complexity:
+        Best Case: O(log n)
+        Average Case: O(log n)
+        Worst Case: O(log n)
+
+    Space Complexity: O(1)
+
+    Examples:
+        >>> heapify([4, 10, 3, 5, 1], 5, 1)
+        [4, 10, 3, 5, 1]
+        >>> heapify([4, 10, 3, 5, 1], 5, 0)
+        [10, 5, 3, 4, 1]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+    if not isinstance(n, int) or not isinstance(i, int):
+        raise TypeError("n and i must be integers")
+
     largest = i  # Initialize largest as root
     left = 2 * i + 1  # left = 2*i + 1
     right = 2 * i + 2  # right = 2*i + 2

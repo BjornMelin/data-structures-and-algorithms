@@ -27,7 +27,26 @@ def merge_sort(arr: List[int]) -> List[int]:
 
     Returns:
         List[int]: The sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(n log n)
+        Average Case: O(n log n)
+        Worst Case: O(n log n)
+
+    Space Complexity: O(n)
+
+    Examples:
+        >>> merge_sort([64, 34, 25, 12, 22, 11, 90])
+        [11, 12, 22, 25, 34, 64, 90]
+        >>> merge_sort([5, 1, 4, 2, 8])
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+
     if len(arr) <= 1:
         return arr
 
@@ -48,7 +67,28 @@ def merge(left: List[int], right: List[int]) -> List[int]:
 
     Returns:
         List[int]: The merged sorted list.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(n)
+        Average Case: O(n)
+        Worst Case: O(n)
+
+    Space Complexity: O(n)
+
+    Examples:
+        >>> merge([1, 3, 5], [2, 4, 6])
+        [1, 2, 3, 4, 5, 6]
+        >>> merge([1, 2, 3], [4, 5, 6])
+        [1, 2, 3, 4, 5, 6]
     """
+    if not isinstance(left, list) or not all(isinstance(i, int) for i in left):
+        raise TypeError("Input must be a list of integers")
+    if not isinstance(right, list) or not all(isinstance(i, int) for i in right):
+        raise TypeError("Input must be a list of integers")
+
     sorted_list = []
     left_index, right_index = 0, 0
 

@@ -12,13 +12,25 @@ def interpolation_search(arr: List[Any], target: Any) -> int:
     Returns:
         int: The index of the target element if found, otherwise -1.
 
+    Raises:
+        ValueError: If the input list is empty.
+
     Time Complexity:
         Best Case: O(1) - When the target is at the estimated position.
         Average Case: O(log log n) - When the target is somewhere in the list.
         Worst Case: O(n) - When the target is uniformly distributed and not present.
 
     Space Complexity: O(1) - Only a constant amount of extra space is used.
+
+    Examples:
+        >>> interpolation_search([1, 2, 3, 4, 5], 3)
+        2
+        >>> interpolation_search([1, 2, 3, 4, 5], 6)
+        -1
     """
+    if not arr:
+        raise ValueError("Input list cannot be empty")
+
     low, high = 0, len(arr) - 1
 
     while low <= high and arr[low] <= target <= arr[high]:
