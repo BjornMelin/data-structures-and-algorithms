@@ -27,7 +27,26 @@ def bucket_sort(arr: List[int]) -> List[int]:
 
     Returns:
         List[int]: The sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(n + k) where k is the number of buckets
+        Average Case: O(n + k)
+        Worst Case: O(n^2) when all elements are placed in a single bucket
+
+    Space Complexity: O(n + k)
+
+    Examples:
+        >>> bucket_sort([64, 34, 25, 12, 22, 11, 90])
+        [11, 12, 22, 25, 34, 64, 90]
+        >>> bucket_sort([5, 1, 4, 2, 8])
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+
     if len(arr) == 0:
         return arr
 
