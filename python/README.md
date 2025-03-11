@@ -21,6 +21,8 @@
 - pytest (testing framework)
 - black (code formatter)
 - mypy (optional static type checking)
+- pylint (code linting)
+- pytest-cov (test coverage reporting)
 
 ## 📦 Setup
 
@@ -43,8 +45,14 @@ pip install -r requirements.txt
 # Run tests
 pytest
 
+# Run tests with coverage reporting
+pytest --cov=python/ --cov-report=xml
+
 # Format code
 black .
+
+# Lint code
+pylint python/
 
 # Type checking (optional)
 mypy .
