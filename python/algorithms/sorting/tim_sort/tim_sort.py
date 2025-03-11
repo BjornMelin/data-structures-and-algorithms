@@ -29,7 +29,28 @@ def insertion_sort(arr: List[int], left: int, right: int) -> None:
         arr (List[int]): The list of integers to be sorted.
         left (int): The starting index of the portion to be sorted.
         right (int): The ending index of the portion to be sorted.
+
+    Raises:
+        TypeError: If the input is not a list of integers or if left or right are not integers.
+
+    Time Complexity:
+        Best Case: O(n) when the array is already sorted
+        Average Case: O(n^2)
+        Worst Case: O(n^2)
+
+    Space Complexity: O(1)
+
+    Examples:
+        >>> insertion_sort([64, 34, 25, 12, 22, 11, 90], 0, 6)
+        [11, 12, 22, 25, 34, 64, 90]
+        >>> insertion_sort([5, 1, 4, 2, 8], 0, 4)
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+    if not isinstance(left, int) or not isinstance(right, int):
+        raise TypeError("left and right must be integers")
+
     for i in range(left + 1, right + 1):
         key = arr[i]
         j = i - 1
@@ -48,7 +69,28 @@ def merge(arr: List[int], left: int, mid: int, right: int) -> None:
         left (int): The starting index of the first portion.
         mid (int): The ending index of the first portion.
         right (int): The ending index of the second portion.
+
+    Raises:
+        TypeError: If the input is not a list of integers or if left, mid, or right are not integers.
+
+    Time Complexity:
+        Best Case: O(n)
+        Average Case: O(n)
+        Worst Case: O(n)
+
+    Space Complexity: O(n)
+
+    Examples:
+        >>> merge([4, 10, 3, 5, 1], 0, 2, 4)
+        [1, 3, 4, 5, 10]
+        >>> merge([4, 10, 3, 5, 1], 0, 1, 4)
+        [1, 3, 4, 5, 10]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+    if not isinstance(left, int) or not isinstance(mid, int) or not isinstance(right, int):
+        raise TypeError("left, mid, and right must be integers")
+
     len1, len2 = mid - left + 1, right - mid
     left_part, right_part = [], []
 
@@ -88,7 +130,26 @@ def tim_sort(arr: List[int]) -> List[int]:
 
     Returns:
         List[int]: The sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(n)
+        Average Case: O(n log n)
+        Worst Case: O(n log n)
+
+    Space Complexity: O(n)
+
+    Examples:
+        >>> tim_sort([64, 34, 25, 12, 22, 11, 90])
+        [11, 12, 22, 25, 34, 64, 90]
+        >>> tim_sort([5, 1, 4, 2, 8])
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+
     n = len(arr)
     for i in range(0, n, MIN_RUN):
         insertion_sort(arr, i, min((i + MIN_RUN - 1), (n - 1)))

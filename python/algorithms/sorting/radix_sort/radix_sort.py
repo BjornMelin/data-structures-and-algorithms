@@ -27,7 +27,28 @@ def counting_sort_for_radix(arr: List[int], exp: int) -> List[int]:
 
     Returns:
         List[int]: The partially sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers or if exp is not an integer.
+
+    Time Complexity:
+        Best Case: O(n)
+        Average Case: O(n)
+        Worst Case: O(n)
+
+    Space Complexity: O(n + k)
+
+    Examples:
+        >>> counting_sort_for_radix([170, 45, 75, 90, 802, 24, 2, 66], 1)
+        [170, 90, 802, 2, 24, 45, 75, 66]
+        >>> counting_sort_for_radix([170, 45, 75, 90, 802, 24, 2, 66], 10)
+        [802, 2, 24, 45, 66, 170, 75, 90]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+    if not isinstance(exp, int):
+        raise TypeError("exp must be an integer")
+
     n = len(arr)
     output = [0] * n  # output array
     count = [0] * 10  # count array for digits (0 to 9)
@@ -65,7 +86,26 @@ def radix_sort(arr: List[int]) -> List[int]:
 
     Returns:
         List[int]: The sorted list of integers.
+
+    Raises:
+        TypeError: If the input is not a list of integers.
+
+    Time Complexity:
+        Best Case: O(nk)
+        Average Case: O(nk)
+        Worst Case: O(nk)
+
+    Space Complexity: O(n + k)
+
+    Examples:
+        >>> radix_sort([170, 45, 75, 90, 802, 24, 2, 66])
+        [2, 24, 45, 66, 75, 90, 170, 802]
+        >>> radix_sort([5, 1, 4, 2, 8])
+        [1, 2, 4, 5, 8]
     """
+    if not isinstance(arr, list) or not all(isinstance(i, int) for i in arr):
+        raise TypeError("Input must be a list of integers")
+
     # Find the maximum number to know the number of digits
     max1 = max(arr)
 

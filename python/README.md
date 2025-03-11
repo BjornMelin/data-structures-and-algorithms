@@ -10,6 +10,10 @@
 - [✅ Testing](#testing)
 - [📝 Style Guide](#style-guide)
 - [📚 Documentation](#documentation)
+- [📊 Minimum Code Coverage](#minimum-code-coverage)
+- [📜 Google-Style Docstring Template](#google-style-docstring-template)
+- [💬 In-Function Comment Requirements](#in-function-comment-requirements)
+- [📄 Standardized README.md Template](#standardized-readme-template)
 
 ## 🔧 Requirements
 
@@ -197,6 +201,178 @@ class BinarySearchTree(Generic[T]):
 - List comprehensions over explicit loops
 - Proper use of generators for memory efficiency
 
----
+## 📊 Minimum Code Coverage
 
-For more details, check the [main documentation](../README.md).
+All code must have a minimum of 90% test coverage. This ensures that the code is well-tested and reliable.
+
+## 📜 Google-Style Docstring Template
+
+All functions and methods should use the following Google-style docstring template:
+
+```python
+def example_function(param1: int, param2: str) -> bool:
+    """
+    Brief description of the function.
+
+    Args:
+        param1 (int): Description of param1.
+        param2 (str): Description of param2.
+
+    Returns:
+        bool: Description of the return value.
+
+    Raises:
+        ValueError: Description of the exception raised.
+
+    Time Complexity:
+        Best Case: O(1) - Description of the best case.
+        Average Case: O(n) - Description of the average case.
+        Worst Case: O(n^2) - Description of the worst case.
+
+    Space Complexity: O(1) - Description of the space complexity.
+
+    Examples:
+        >>> example_function(1, "example")
+        True
+    """
+    pass
+```
+
+## 💬 In-Function Comment Requirements
+
+In-function comments should be used to explain critical steps of the algorithm, including:
+
+- Algorithm step explanations
+- Time/space complexity annotations for critical operations
+- Edge case handling explanations
+
+Example:
+
+```python
+def binary_search(arr: list[int], target: int) -> int:
+    """
+    Perform a binary search on the given sorted list to find the target element.
+
+    Args:
+        arr (list): The sorted list to search through.
+        target: The element to search for.
+
+    Returns:
+        int: The index of the target element if found, otherwise -1.
+
+    Raises:
+        ValueError: If the input list is empty.
+
+    Time Complexity:
+        Best Case: O(1) - When the target is at the middle position.
+        Average Case: O(log n) - When the target is somewhere in the list.
+        Worst Case: O(log n) - When the target is at the last position or not present.
+
+    Space Complexity: O(1) - Only a constant amount of extra space is used.
+
+    Examples:
+        >>> binary_search([1, 2, 3, 4, 5], 3)
+        2
+        >>> binary_search([1, 2, 3, 4, 5], 6)
+        -1
+    """
+    if not arr:
+        raise ValueError("Input list cannot be empty")
+
+    left, right = 0, len(arr) - 1
+
+    while left <= right:
+        mid = left + (right - left) // 2
+
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+```
+
+## 📄 Standardized README.md Template
+
+Each data structure and algorithm implementation should have a README.md file with the following sections:
+
+1. **Overview and Purpose**: A brief description of the data structure or algorithm and its purpose.
+2. **API Documentation**: A table with the time and space complexity of the main operations.
+3. **Usage Examples**: Code snippets demonstrating how to use the data structure or algorithm.
+4. **Implementation Details**: Detailed explanation of the algorithm or data structure, including pseudocode.
+5. **Mermaid Diagrams**: Visual representation of the algorithm or data structure using Mermaid diagrams.
+6. **Performance Benchmarks**: Results of performance benchmarks with methodology.
+7. **Comparison with Python's Built-in Equivalents**: Comparison with Python's built-in data structures or algorithms, if applicable.
+
+Example:
+
+```markdown
+# Binary Search Algorithm
+
+## Overview and Purpose
+
+Binary Search is an efficient algorithm for finding a target value within a sorted array. It works by repeatedly dividing the search interval in half, making it much faster than linear search for large datasets.
+
+## API Documentation
+
+| Operation | Time Complexity | Space Complexity |
+| --------- | ---------------- | ---------------- |
+| Search    | O(log n)         | O(1)             |
+
+## Usage Examples
+
+```python
+from binary_search import binary_search
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+target = 7
+result = binary_search(arr, target)
+print(f"Element {target} found at index: {result}")
+```
+
+## Implementation Details
+
+1. Start with a sorted array
+2. Find the middle element of the array
+3. If the target value is equal to the middle element, return its index
+4. If the target value is less than the middle element, repeat the search on the left half
+5. If the target value is greater than the middle element, repeat the search on the right half
+6. Continue this process until the target is found or determined to be not in the array
+
+## Mermaid Diagrams
+
+```mermaid
+graph TD
+    A[Start] --> B[Initialize left = 0, right = length - 1]
+    B --> C{left ≤ right?}
+    C -- Yes --> D[Calculate mid = left + (right - left) // 2]
+    D --> E{A[mid] = target?}
+    E -- Yes --> F[Return mid]
+    E -- No --> G{A[mid] < target?}
+    G -- Yes --> H[left = mid + 1]
+    G -- No --> I[right = mid - 1]
+    H --> C
+    I --> C
+    C -- No --> J[Return -1]
+    F --> K[End]
+    J --> K
+```
+
+## Performance Benchmarks
+
+| Test Case         | Input          | Expected Output | Actual Output |
+| ----------------- | -------------- | --------------- | ------------- |
+| Element at start  | [1,2,3,4,5], 1 | 0               | 0             |
+| Element in middle | [1,2,3,4,5], 3 | 2               | 2             |
+| Element at end    | [1,2,3,4,5], 5 | 4               | 4             |
+| Element not found | [1,2,3,4,5], 6 | -1              | -1            |
+| Empty list        | [], 1          | -1              | -1            |
+| Single element    | [1], 1         | 0               | 0             |
+
+## Comparison with Python's Built-in Equivalents
+
+Python's built-in `bisect` module provides similar functionality for binary search. However, the custom implementation allows for more flexibility and customization.
+```
+```
