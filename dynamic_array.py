@@ -87,9 +87,8 @@ class DynamicArray:
         return self._n == 0
     
     def clear(self):
-        """Clears the array by resetting all elements."""
+        """Clears the array by resetting all elements while preserving the current capacity."""
         self._n = 0
-        self._capacity = 2
         self._array = self._make_array(self._capacity)
     
     def __iter__(self):
