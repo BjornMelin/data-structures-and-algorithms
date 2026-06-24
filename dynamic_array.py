@@ -86,7 +86,8 @@ class DynamicArray:
             raise IndexError("pop from empty array")
         value = self._array[self._n - 1]
         self._n -= 1
-        if 0 < self._n < self._capacity // 4:
+        self._array[self._n] = None
+        if 0 < self._n <= self._capacity // 4:
             self._resize(self._capacity // 2)
         return value
     
