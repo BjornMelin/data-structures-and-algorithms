@@ -23,6 +23,8 @@ class DynamicArray:
     
     def __init__(self, capacity: int = 2) -> None:
         """Initialize dynamic array with given capacity."""
+         if capacity < 1:
++        raise ValueError("capacity must be >= 1")
         self._n = 0
         self._capacity = capacity
         self._array = self._make_array(self._capacity)
